@@ -1,7 +1,16 @@
 <!-- index.html -->
 <script src="https://combinatronics.com/smart-on-fhir/client-js/master/dist/build/fhir-client.js"></script>
 <script src="https://combinatronics.com/smart-on-fhir/client-js/master/dist/build/fhir-client.min.js"></script>
-<script type="text/javascript">
+<script>
+    FHIR.oauth2.ready()
+        .then(client => client.request("MedicationStatement?patient=19"))
+        .then(console.log)
+        .catch(console.error);
+</script>
+
+
+
+<!-- <script type="text/javascript">
     function getPatientName(pt) {
         if (pt.name) {
             var names = pt.name.map(function (name) {
@@ -31,7 +40,7 @@
         med_list.innerHTML += "<li> " + getMedicationName(medCodings) + "</li>";
     }
 
-    FHIR.oauth2.ready()
+    FHIR.oauth2.ready
         (client => client.request(`/MedicationRequest?patient=19`, { resolveReferences: "medicationReference" })
             .then(data => data.entry.map(item => getMedicationName(
                 getPath(item, "resource.medicationCodeableConcept.coding") ||
@@ -67,4 +76,4 @@
     <br>
     <hr>
     <div id=med_list></div>
-</body>
+</body> -->
