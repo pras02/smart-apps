@@ -17,7 +17,18 @@
         <pre id="output">Loading...</pre>
     </div>
     <script type="text/javascript">
+
+        function createRenderer(id) {
+            const output = id ? document.getElementById(id) : document.body;
+            return function (data) {
+                output.innerText = data && typeof data === "object"
+                    ? JSON.stringify(data, null, 4)
+                    : String(data);
+            };
+        }
+
         var render = createRenderer("output")
+        
         FHIR.oauth2.ready()
             .then(function (client) {
                 client.request("MedicationStatement?patient=19", {
