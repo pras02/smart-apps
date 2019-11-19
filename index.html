@@ -3,7 +3,7 @@
 <script src="https://combinatronics.com/smart-on-fhir/client-js/master/dist/build/fhir-client.min.js"></script>
 <script>
 FHIR.oauth2.ready()
-    .then(client => client.request("MedicationStatement"))
+    .then(client => client.request("MedicationStatement?patient=19"))
     .then(console.log)
     .catch(console.error);
 </script>
