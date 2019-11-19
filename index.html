@@ -27,8 +27,15 @@
             };
         }
 
+        function getMedicationName(medCodings) {
+            var coding = medCodings.find(function (c) {
+                return c.system == "http://www.nlm.nih.gov/research/umls/rxnorm";
+            });
+            return coding && coding.display || "Unnamed Medication(TM)";
+        }
+
         var render = createRenderer("output")
-        
+
         FHIR.oauth2.ready()
             .then(function (client) {
                 client.request("MedicationStatement?patient=19", {
