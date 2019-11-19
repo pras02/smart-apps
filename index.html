@@ -13,7 +13,7 @@
 
 <body>
     <div class="cell full">
-        <h4>Patient Medications</h4>
+        <h4 id=patientname>Patient Medications</h4>
         <pre id="output">Loading...</pre>
     </div>
     <script type="text/javascript">
@@ -35,6 +35,7 @@
         }
 
         var render = createRenderer("output")
+        var render = createRenderer("patientname")
 
         FHIR.oauth2.ready()
             .then(function (client) {
@@ -57,6 +58,25 @@
                         });
                     })
                     .then(render)
+                    .then(function (client) {
+                        client.request("Patient/19", {
+                            resolveReferences: ["name"],
+                            graph: true
+                        })
+                            .then(function (data) {
+                                if (!data.entry || !data.entry.length) {
+                                    throw new Error("selected patient");
+                                }
+                                return data.entry;
+                            })
+                            .then(function (entries) {
+                                return entries.map(function (item) {
+                                    return client.getPath(item, "resource.name.text")
+                                });
+                            })
+                            .then(render)
+                            .then(console.log)
+                    })
                     .then(console.log)
                     .catch(console.error)
             })
