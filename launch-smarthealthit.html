@@ -1,0 +1,27 @@
+<!-- launch.html -->
+<script src="https://combinatronics.com/smart-on-fhir/client-js/master/dist/build/fhir-client.js"></script>
+<script src="https://combinatronics.com/smart-on-fhir/client-js/master/dist/build/fhir-client.min.js"></script>
+<script>
+    FHIR.oauth2.authorize({
+
+        client_id: "my_web_app",
+
+        scope: [
+            "launch",           // Get the launch context in EHR launch mode
+            "launch/patient",   // Get the current patient in standalone launch mode
+            "launch/encounter", // Get the current encounter in standalone launch mode
+            "openid fhirUser",  // Get the current user
+            "patient/*.read"    // Read patient data
+        ].join(" "),
+
+        // Patient Login
+         iss: "https://launch.smarthealthit.org/v/r3/sim/eyJrIjoiMSIsImIiOiJzbWFydC03Nzc3NzAxIn0/fhir",
+
+        // Provider Login
+        // iss: "http://launch.smarthealthit.org/v/r4/fhir",
+        // iss: "https://launch.smarthealthit.org/v/r3/sim/eyJoIjoiMSJ9/fhir",
+        // iss: "https://launch.smarthealthit.org/v/r3/sim/eyJoIjoiMSIsImIiOiJmMDQ2MjkzNi1lYjRiLTRkYTEtYjQ1YS1mYmQ5NmViZjhjY2IiLCJlIjoic21hcnQtUHJhY3RpdGlvbmVyLTcxNjE0NTAyIn0/fhir",
+
+        redirectUri: "index.html"
+    });
+</script>

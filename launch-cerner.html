@@ -1,0 +1,40 @@
+<!-- launch.html -->
+<script src="https://combinatronics.com/smart-on-fhir/client-js/master/dist/build/fhir-client.js"></script>
+<script src="https://combinatronics.com/smart-on-fhir/client-js/master/dist/build/fhir-client.min.js"></script>
+<script>
+    FHIR.oauth2.authorize({
+
+        client_id: "58aa3aa5-6003-4859-a74a-09b2b4cfa88a",
+
+        scope: [
+            "patient/AllergyIntolerance.read",
+            "patient/Appointment.read",
+            "patient/Binary.read",
+            "patient/CarePlan.read",
+            "patient/Condition.read",
+            "patient/Contract.read",
+            "patient/Device.read",
+            "patient/DiagnosticReport.read",
+            "patient/DocumentReference.read",
+            "patient/Encounter.read",
+            "patient/Goal.read",
+            "patient/Immunization.read",
+            "patient/MedicationAdministration.read",
+            "patient/MedicationOrder.read",
+            "patient/MedicationStatement.read",
+            "patient/Observation.read",
+            "patient/Patient.read",
+            "patient/Person.read",
+            "patient/Procedure.read",
+            "patient/ProcedureRequest.read",
+            "patient/RelatedPerson.read",
+            "patient/Schedule.read",
+            "patient/Slot.read",
+        ].join(" "),
+
+        // Patient Login
+        iss: "https://fhir-myrecord.sandboxcerner.com/dstu2/0b8a0111-e8e6-4c26-a91c-5069cbc6b1ca",
+
+        redirectUri: "https://pras02.github.io/smart-apps/"
+    });
+</script>
