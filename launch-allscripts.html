@@ -3,16 +3,12 @@
 <script src="https://combinatronics.com/smart-on-fhir/client-js/master/dist/build/fhir-client.min.js"></script>
 <script>
     FHIR.oauth2.authorize({
-
         client_id: "b6792f05-3823-43ca-9831-53e83487b2d7",
-
         scope: [
             "patient/*.read"
         ].join(" "),
-
-        // Patient Login
-        iss: "https://tw171.open.allscripts.com/FHIR",
-
+        // Patient Launch
+        iss: "https://tw171.open.allscripts.com/open",
         redirectUri: "https://pras02.github.io/smart-apps/"
     });
 </script>
