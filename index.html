@@ -8,34 +8,46 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://combinatronics.com/smart-on-fhir/client-js/master/dist/build/fhir-client.js"></script>
     <script src="https://combinatronics.com/smart-on-fhir/client-js/master/dist/build/fhir-client.min.js"></script>
-    <title>Document</title>
+    <script src="./js/helper.js"></script>
+    <title>Smart-App</title>
 </head>
 
 <body>
+    <div class="cell top-left">
+        <h4>Current Patient</h4>
+        <pre id="patient"></pre>
+    </div>
+    <div class="cell top-center">
+        <h4>Current User</h4>
+        <pre id="user"></pre>
+    </div>
+    <div class="cell top-right">
+        <h4>Current Encounter</h4>
+        <pre id="encounter"></pre>
+    </div>
+    <div class="cell bottom">
+        <h4>Main Output</h4>
+        <pre id="output">Loading...</pre>
+    </div>
+    <script type="text/javascript">
+        FHIR.oauth2.ready()
+            .then(function (client) {
+                var app = new App(client);
+                app.renderContext();
+                app.request("metadata");
+            })
+            .catch(createRenderer("output"));
+    </script>
+</body>
+
+<!-- <body>
     <div class="cell full">
         <h4>Patient Medications</h4>
         <pre id="output">Loading...</pre>
     </div>
     <script type="text/javascript">
 
-        function createRenderer(id) {
-            const output = id ? document.getElementById(id) : document.body;
-            return function (data) {
-                output.innerText = data && typeof data === "object"
-                    ? JSON.stringify(data, null, 4)
-                    : String(data);
-            };
-        }
-
-        function getMedicationName(medCodings) {
-            var coding = medCodings.find(function (c) {
-                return c.system == "http://www.nlm.nih.gov/research/umls/rxnorm";
-            });
-            return coding && coding.display || "Unnamed Medication(TM)";
-        }
-
         var render = createRenderer("output")
-
         FHIR.oauth2.ready()
             .then(function (client) {
                 client.request("MedicationStatement?patient=19", {
@@ -61,6 +73,6 @@
                     .catch(console.error)
             })
     </script>
-</body>
+</body> -->
 
 </html>
