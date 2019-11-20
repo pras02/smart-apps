@@ -38,14 +38,14 @@ App.prototype.request = function (requestOptions, fhirOptions) {
     return this.client.request(requestOptions, fhirOptions).then(render, render);
 };
 
-App.prototype.renderContext = function () {
-    return Promise.all([
-        this.fetchCurrentPatient(),
-        this.fetchCurrentUser(),
-        this.fetchCurrentEncounter()
-    ]);
-};
+// App.prototype.renderContext = function () {
+//     return Promise.all([
+//         this.fetchCurrentPatient(),
+//         this.fetchCurrentUser(),
+//         this.fetchCurrentEncounter()
+//     ]);
+// };
 
-App.prototype.setLabel = function (containerId, label) {
-    document.getElementById(containerId).previousElementSibling.innerText = label;
-};
+// App.prototype.setLabel = function (containerId, label) {
+//     document.getElementById(containerId).previousElementSibling.innerText = label;
+// };
