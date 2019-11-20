@@ -10,13 +10,6 @@ function createRenderer(id) {
     };
 }
 
-function getMedicationName(medCodings) {
-    var coding = medCodings.find(function (c) {
-        return c.system == "http://www.nlm.nih.gov/research/umls/rxnorm";
-    });
-    return coding && coding.display || "Unnamed Medication(TM)";
-}
-
 function App(client) {
     this.client = client;
 }
@@ -56,4 +49,3 @@ App.prototype.renderContext = function () {
 App.prototype.setLabel = function (containerId, label) {
     document.getElementById(containerId).previousElementSibling.innerText = label;
 };
-
