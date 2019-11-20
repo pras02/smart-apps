@@ -6,9 +6,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- FHIR Library -->
     <script src="https://combinatronics.com/smart-on-fhir/client-js/master/dist/build/fhir-client.js"></script>
     <script src="https://combinatronics.com/smart-on-fhir/client-js/master/dist/build/fhir-client.min.js"></script>
+    <!-- Helper Scripts -->
     <script src="./js/helper.js"></script>
+    <!-- JSON Viewer Scripts -->
+    <script src="json-viewer/jquery.json-viewer.js"></script>
+    <link href="json-viewer/jquery.json-viewer.css" type="text/css" rel="stylesheet">
+
     <title>Smart-App</title>
 </head>
 
@@ -33,7 +39,8 @@
         FHIR.oauth2.ready()
             .then(function (client) {
                 var app = new App(client);
-                app.renderContext();
+                // app.renderContext();
+                app.fetchCurrentPatient().jsonViewer();
                 app.request("metadata");
             })
             .catch(createRenderer("output"));
